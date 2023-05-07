@@ -1,6 +1,6 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
-import {mapGetters} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import {LoadingSpinner, ReportListItem} from '@/components';
 
 @Options({
@@ -13,10 +13,17 @@ import {LoadingSpinner, ReportListItem} from '@/components';
             loaded: 'report/getLoaded',
             error: 'report/getError'
         })
+    },
+    methods: {
+        ...mapActions({
+            getReport: 'report/getReport'
+        })
+    },
+    mounted() {
+        this.getReport()
     }
 })
 export default class ReportView extends Vue {
-
 }
 </script>
 

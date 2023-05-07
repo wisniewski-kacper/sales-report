@@ -7,7 +7,7 @@ export const reportAction = {
         context.state.loading = true;
 
         try {
-            await ApiMockUtils.wait(100)
+            await ApiMockUtils.wait(1000)
 
             context.state.report = report();
         } catch (e) {

@@ -11,15 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/report',
         name: 'report',
-        component: ReportView,
-        beforeEnter(to, from, next) {
-            store.dispatch('report/getReport')
-                .then(() => next())
-                .catch((error) => {
-                    console.error('Error loading report:', error)
-                    next('/error')
-                })
-        }
+        component: ReportView
     },
 
 ]
