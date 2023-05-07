@@ -1,32 +1,18 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
-import ReportListItem from "@/components/ReportListItem.vue";
+import {mapGetters} from 'vuex';
+import {LoadingSpinner, ReportListItem} from '@/components';
 
 @Options({
-    components: {ReportListItem},
-    data() {
-        return {
-            products: [
-                {
-                    name: 'Product #123',
-                    amount: 12,
-                    price: 3.20,
-                    currency: 'PLN',
-                },
-                {
-                    name: 'Product #321',
-                    amount: 3,
-                    price: 22.40,
-                    currency: 'PLN',
-                },
-                {
-                    name: 'Product #231',
-                    amount: 4,
-                    price: 13.20,
-                    currency: 'PLN',
-                },
-            ]
-        }
+    components: {LoadingSpinner, ReportListItem},
+    computed: {
+        ...mapGetters({
+            products: 'report/getReportProducts',
+            report: 'report/getReport',
+            loading: 'report/getLoading',
+            loaded: 'report/getLoaded',
+            error: 'report/getError'
+        })
     }
 })
 export default class ReportView extends Vue {
@@ -45,7 +31,11 @@ export default class ReportView extends Vue {
                 </div>
 
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="m-auto d-flex justify-content-center align-content-center" v-if="loading || !loaded">
+                        <LoadingSpinner/>
+                    </div>
+
+                    <div class="table-responsive" v-if="loaded && !error">
                         <table class="table table-bordered table-sm table-striped">
                             <thead>
 
@@ -62,7 +52,7 @@ export default class ReportView extends Vue {
 
                                 <th>Price</th>
 
-                                <th>product total</th>
+                                <th>Total</th>
                             </tr>
 
                             </thead>
@@ -73,7 +63,7 @@ export default class ReportView extends Vue {
                                 <ReportListItem :product-name="product.name"
                                                 :product-amount="product.amount"
                                                 :product-price="product.price"
-                                                :currency-code="product.currency"/>
+                                                :currency-code="report.currency"/>
                             </tr>
 
                             <tr>
@@ -82,7 +72,7 @@ export default class ReportView extends Vue {
                                 </th>
 
                                 <td colspan="2">
-                                    3
+                                    {{ report.totalAmount }}
                                 </td>
                             </tr>
 
@@ -92,7 +82,7 @@ export default class ReportView extends Vue {
                                 </th>
 
                                 <td colspan="2">
-                                    {{ 3 * 3.99 }} PLN
+                                    {{ new Intl.NumberFormat('en-US', {style: 'currency', currency: report.currency}).format(report.totalValue) }}
                                 </td>
                             </tr>
                             </tbody>
