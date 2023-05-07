@@ -31,7 +31,7 @@ export default class ReportView extends Vue {
                 </div>
 
                 <div class="card-body">
-                    <div class="m-auto d-flex justify-content-center align-content-center" v-if="loading || !loaded">
+                    <div class="m-auto d-flex justify-content-center align-content-center" v-if="loading">
                         <LoadingSpinner/>
                     </div>
 
@@ -41,7 +41,7 @@ export default class ReportView extends Vue {
 
                             <tr>
                                 <th colspan="4">
-                                    Customer name
+                                    {{ report.customerName }}
                                 </th>
                             </tr>
 
