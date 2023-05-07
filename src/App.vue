@@ -1,9 +1,14 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <span class="navbar-brand">Sales Report</span>
+
+        <ul class="navbar-nav">
+            <li class="{{this.$route.name === 'report' ? 'navbar-item active': 'navbar-item'}}">
+                <router-link to="/report">Report</router-link>
+            </li>
+        </ul>
+    </nav>
+    <router-view/>
 </template>
 
 <style lang="scss">
@@ -28,3 +33,5 @@ nav {
   }
 }
 </style>
+<script setup lang="ts">
+</script>
