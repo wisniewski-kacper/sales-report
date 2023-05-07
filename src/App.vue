@@ -9,6 +9,10 @@
                         <li class="{{this.$route.name === 'report' ? 'nav-item active': 'nav-item'}}">
                             <router-link class="nav-link" to="/report">Report</router-link>
                         </li>
+
+                        <li class="{{this.$route.name === 'list' ? 'nav-item active': 'nav-item'}}">
+                            <router-link class="nav-link" to="/list">List</router-link>
+                        </li>
                     </ul>
                 </nav>
             </div>

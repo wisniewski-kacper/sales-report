@@ -1,10 +1,10 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
 import {mapActions, mapGetters} from 'vuex';
-import {LoadingSpinner, ReportListItem} from '@/components';
+import {LoadingSpinner, ReportProductListItem} from '@/components';
 
 @Options({
-    components: {LoadingSpinner, ReportListItem},
+    components: {LoadingSpinner, ReportProductListItem},
     computed: {
         ...mapGetters({
             products: 'report/getReportProducts',
@@ -67,7 +67,7 @@ export default class ReportView extends Vue {
                             <tbody>
 
                             <tr v-for="product in products" :key="product.name">
-                                <ReportListItem :product-name="product.name"
+                                <ReportProductListItem :product-name="product.name"
                                                 :product-amount="product.amount"
                                                 :product-price="product.price"
                                                 :currency-code="report.currency"/>
