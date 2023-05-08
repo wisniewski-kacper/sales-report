@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import {store} from '../store';
-import ReportView from "@/views/ReportView.vue";
+import {ReportView, ReportListView} from '@/views';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -13,7 +12,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'report',
         component: ReportView
     },
-
+    {
+        path: '/list',
+        name: 'list',
+        component: ReportListView
+    }
 ]
 
 const router = createRouter({

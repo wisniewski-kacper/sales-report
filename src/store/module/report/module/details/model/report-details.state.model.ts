@@ -1,6 +1,6 @@
 import {ReportDataModel} from '@/common';
 
-export interface ReportStateModel {
+export interface ReportDetailsStateModel {
     report: ReportDataModel|null;
     loading: boolean;
     loaded: boolean;

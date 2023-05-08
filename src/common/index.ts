@@ -1,2 +1,2 @@
-export {ReportDataModel, ProductDataModel} from './model';
+export {ReportDataModel, ProductDataModel, ReportListItemModel} from './model';
 export {ApiMockUtils} from './utils';

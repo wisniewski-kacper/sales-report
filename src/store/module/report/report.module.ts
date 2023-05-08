@@ -1,11 +1,10 @@
-import {reportInitState} from './state';
-import {reportAction} from './action';
-import {reportMutation} from './mutation';
-import {reportGetters} from './getter';
+import {reportDetailsModule, reportListModule} from './module';
 
 export const reportModule = {
-    state: reportInitState,
-    actions: reportAction,
-    getters: reportGetters,
-    mutations: reportMutation,
+    namespaced: true,
+    modules:
+        {
+            details: reportDetailsModule,
+            list: reportListModule
+        }
 }

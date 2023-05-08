@@ -3,29 +3,28 @@ import {Options, Vue} from 'vue-class-component';
 
 @Options({
     props: {
-        productName: String,
-        productPrice: Number,
-        productAmount: Number,
-        currencyCode: String,
+        reportId: Number,
+        reportCustomer: String,
+        reportFromDate: String,
+        reportToDate: String,
     }
 })
 export default class ReportListItem extends Vue {
-    productName!: string
-    productPrice!: string
-    productAmount!: string
-    currencyCode!: string
+    reportId!: number;
+    reportCustomer!: string;
+    reportFromDate!: string;
+    reportToDate!: string;
 }
 </script>
 
 <template>
-    <td>{{ productName }}</td>
+    <td>{{ reportId }}</td>
 
-    <td>{{ productAmount }}</td>
+    <td>{{ reportCustomer }}</td>
 
-    <td>{{ new Intl.NumberFormat('en-US', {style: 'currency', currency: currencyCode}).format(productPrice) }}</td>
-
-    <td>{{ new Intl.NumberFormat('en-US', {style: 'currency', currency: currencyCode}).format(productAmount * productPrice) }}</td>
+    <td>{{ reportFromDate }} - {{ reportToDate }}</td>
 </template>
 
 <style scoped lang="scss">
+
 </style>
