@@ -9,7 +9,7 @@ export const reportDetailsAction = {
         try {
             await ApiMockUtils.wait(1000)
 
-            context.commit('setOnErrorReportDetail', 'Report not found');
+            context.commit('setOnLoadedReportDetail', report());
         } catch (e) {
             context.commit('setOnErrorReportDetail', 'Report not found');
         }
