@@ -1,20 +1,17 @@
-import {ReportStateModel} from '../model';
+import {ReportDetailsStateModel} from '../model';
 import {ApiMockUtils, ProductDataModel, ReportDataModel} from '@/common';
-import {ActionContext} from "vuex";
+import {ActionContext} from 'vuex';
 
-export const reportAction = {
-    async getReport(context: ActionContext<ReportStateModel, never>) {
-        context.state.loading = true;
+export const reportDetailsAction = {
+    async getReport(context: ActionContext<ReportDetailsStateModel, never>) {
+        context.commit('setOnLoadingReportDetail')
 
         try {
             await ApiMockUtils.wait(1000)
 
-            context.state.report = report();
+            context.commit('setOnErrorReportDetail', 'Report not found');
         } catch (e) {
-            context.state.error = 'There has been an error';
-        } finally {
-            context.state.loading = false;
-            context.state.loaded = true;
+            context.commit('setOnErrorReportDetail', 'Report not found');
         }
     }
 }

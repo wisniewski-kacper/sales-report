@@ -1,32 +1,25 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
-import {ReportListItem} from '@/components';
+import {LoadingSpinner, ReportListItem, ErrorDisplay} from '@/components';
+import {mapActions, mapGetters} from 'vuex';
 
 @Options({
-    components: {ReportListItem},
-    data() {
-        return {
-            reports: [
-                {
-                    id: 123,
-                    customer: 'Customer #123',
-                    fromDate: new Date('01.01.2023'),
-                    toDate: new Date('01.31.2023')
-                },
-                {
-                    id: 321,
-                    customer: 'Customer #123',
-                    fromDate: new Date('02.01.2023'),
-                    toDate: new Date('01.28.2023')
-                },
-                {
-                    id: 231,
-                    customer: 'Customer #123',
-                    fromDate: new Date('03.01.2023'),
-                    toDate: new Date('03.31.2023')
-                },
-            ]
-        }
+    components: {ErrorDisplay, LoadingSpinner, ReportListItem},
+    computed: {
+        ...mapGetters('report/list', {
+            list: 'getList',
+            error: 'getError',
+            loading: 'getLoading',
+            loaded: 'getLoaded',
+        })
+    },
+    methods: {
+        ...mapActions('report/list', {
+            getList: 'getList'
+        })
+    },
+    mounted() {
+        this.getList()
     }
 })
 export default class ReportListView extends Vue {
@@ -50,7 +43,11 @@ export default class ReportListView extends Vue {
                 </div>
 
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="m-auto d-flex justify-content-center align-content-center" v-if="loading">
+                        <LoadingSpinner/>
+                    </div>
+
+                    <div class="table-responsive" v-if="loaded && !error">
                         <table class="table table-bordered table-sm">
                             <thead>
 
@@ -66,7 +63,7 @@ export default class ReportListView extends Vue {
 
                             <tbody>
 
-                            <tr v-for="report in reports" :key="report.id">
+                            <tr v-for="report in list" :key="report.id">
                                 <ReportListItem
                                         :report-id="report.id"
                                         :report-customer="report.customer"
@@ -76,6 +73,10 @@ export default class ReportListView extends Vue {
 
                             </tbody>
                         </table>
+                    </div>
+
+                    <div class="m-auto" v-if="error">
+                        <ErrorDisplay :msg="error" />
                     </div>
                 </div>
             </div>

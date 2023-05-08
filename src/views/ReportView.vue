@@ -2,21 +2,22 @@
 import {Options, Vue} from 'vue-class-component';
 import {mapActions, mapGetters} from 'vuex';
 import {LoadingSpinner, ReportProductListItem} from '@/components';
+import ErrorDisplay from "@/components/ErrorDisplay.vue";
 
 @Options({
-    components: {LoadingSpinner, ReportProductListItem},
+    components: {ErrorDisplay, LoadingSpinner, ReportProductListItem},
     computed: {
-        ...mapGetters({
-            products: 'report/getReportProducts',
-            report: 'report/getReport',
-            loading: 'report/getLoading',
-            loaded: 'report/getLoaded',
-            error: 'report/getError'
+        ...mapGetters('report/details', {
+            products: 'getReportProducts',
+            report: 'getReport',
+            loading: 'getLoading',
+            loaded: 'getLoaded',
+            error: 'getError'
         })
     },
     methods: {
-        ...mapActions({
-            getReport: 'report/getReport'
+        ...mapActions('report/details', {
+            getReport: 'getReport'
         })
     },
     mounted() {
@@ -73,6 +74,10 @@ export default class ReportView extends Vue {
                                                 :currency-code="report.currency"/>
                             </tr>
 
+                            </tbody>
+
+                            <tfoot>
+
                             <tr>
                                 <th colspan="2">
                                     Total amount
@@ -92,8 +97,13 @@ export default class ReportView extends Vue {
                                     {{ new Intl.NumberFormat('en-US', {style: 'currency', currency: report.currency}).format(report.totalValue) }}
                                 </td>
                             </tr>
-                            </tbody>
+
+                            </tfoot>
                         </table>
+                    </div>
+
+                    <div class="m-auto" v-if="error">
+                        <ErrorDisplay :msg="error"/>
                     </div>
                 </div>
             </div>
