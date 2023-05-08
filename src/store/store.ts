@@ -1,8 +1,9 @@
 import { createStore } from 'vuex'
-import { reportModule } from './module';
+import {customerModule, reportModule} from './module';
 
 export default createStore({
     modules: {
-        report: reportModule
+        report: reportModule,
+        customer: customerModule
     },
 })

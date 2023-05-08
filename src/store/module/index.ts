@@ -1,1 +1,2 @@
-export {reportModule} from './report'
+export {reportModule} from './report';
+export {customerModule} from './customer';
