@@ -7,12 +7,12 @@
                         <span class="navbar-brand">Sales Report</span>
 
                         <ul class="navbar-nav">
-                            <li class="{{this.$route.name === 'report' ? 'nav-item active': 'nav-item'}}">
-                                <router-link class="nav-link" to="/report">Report</router-link>
+                            <li class="{{this.$route.name.includes('report') ? 'nav-item active': 'nav-item'}}">
+                                <router-link class="nav-link" to="/report/list">Report</router-link>
                             </li>
 
-                            <li class="{{this.$route.name === 'list' ? 'nav-item active': 'nav-item'}}">
-                                <router-link class="nav-link" to="/list">List</router-link>
+                            <li class="{{this.$route.name.includes('product') ? 'nav-item active': 'nav-item'}}">
+                                <router-link class="nav-link" to="/product/list">Product</router-link>
                             </li>
                         </ul>
                     </nav>

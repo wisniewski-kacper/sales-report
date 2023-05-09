@@ -1,5 +1,5 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import {ReportView, ReportListView, ReportCreateView} from '@/views';
+import {ReportView, ReportListView, ReportCreateView, ProductListView} from '@/views';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -8,20 +8,47 @@ const routes: Array<RouteRecordRaw> = [
         redirect: '/report'
     },
     {
+        path: '/product',
+        name: 'product',
+        children: [
+            {
+                path: '',
+                name: 'productIndex',
+                redirect: '/product/list'
+            },
+            {
+                path: '/product/list',
+                name: 'productList',
+                component: ProductListView
+            },
+        ]
+    },
+    {
         path: '/report',
         name: 'report',
-        component: ReportView
+        children: [
+            {
+                path: '',
+                name: 'reportIndex',
+                redirect: '/report/list'
+            },
+            {
+                path: '/report/list',
+                name: 'reportList',
+                component: ReportListView
+            },
+            {
+                path: '/report/create',
+                name: 'reportCreate',
+                component: ReportCreateView
+            },
+            {
+                path: '/report/details',
+                name: 'reportDetails',
+                component: ReportView
+            },
+        ]
     },
-    {
-        path: '/list',
-        name: 'list',
-        component: ReportListView
-    },
-    {
-        path: '/create',
-        name: 'create',
-        component: ReportCreateView
-    }
 ]
 
 const router = createRouter({
