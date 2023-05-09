@@ -1,10 +1,10 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
-import {LoadingSpinner, ReportListItem, ErrorDisplay} from '@/components';
+import {LoadingSpinner, ReportListItem, MessageDisplay} from '@/components';
 import {mapActions, mapGetters} from 'vuex';
 
 @Options({
-    components: {ErrorDisplay, LoadingSpinner, ReportListItem},
+    components: {MessageDisplay, LoadingSpinner, ReportListItem},
     computed: {
         ...mapGetters('report/list', {
             list: 'getList',
@@ -76,7 +76,7 @@ export default class ReportListView extends Vue {
                     </div>
 
                     <div class="m-auto" v-if="error">
-                        <ErrorDisplay :msg="error" />
+                        <MessageDisplay :msg="error" type="danger" />
                     </div>
                 </div>
             </div>

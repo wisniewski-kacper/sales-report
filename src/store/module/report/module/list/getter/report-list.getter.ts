@@ -6,14 +6,14 @@ export const reportListGetter = {
     },
 
     getLoading: (state: ReportListStateModel) => {
-        return state.loading
+        return state.loading;
     },
 
     getLoaded: (state: ReportListStateModel) => {
-        return state.loaded
+        return state.loaded;
     },
 
     getError: (state: ReportListStateModel) => {
-        return state.error
+        return state.error;
     },
 }

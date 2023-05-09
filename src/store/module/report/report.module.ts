@@ -1,10 +1,11 @@
-import {reportDetailsModule, reportListModule} from './module';
+import {reportCreateModule, reportDetailsModule, reportListModule} from './module';
 
 export const reportModule = {
     namespaced: true,
     modules:
         {
             details: reportDetailsModule,
-            list: reportListModule
+            list: reportListModule,
+            create: reportCreateModule
         }
 }

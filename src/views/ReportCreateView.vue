@@ -1,14 +1,14 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
 import {mapActions, mapGetters} from 'vuex';
-import LoadingSpinner from '@/components/LoadingSpinner.vue';
-import ErrorDisplay from '@/components/ErrorDisplay.vue';
+import {LoadingSpinner, MessageDisplay} from '@/components';
 import VueDatePicker from '@vuepic/vue-datepicker';
 
 @Options({
-    components: {VueDatePicker, ErrorDisplay, LoadingSpinner},
+    components: {MessageDisplay, VueDatePicker, LoadingSpinner},
     data() {
         return {
+            customerId: null,
             fromDate: null,
             toDate: null,
         }
@@ -19,12 +19,30 @@ import VueDatePicker from '@vuepic/vue-datepicker';
             loading: 'getLoading',
             loaded: 'getLoaded',
             error: 'getError'
-        })
+        }),
+        ...mapGetters('report/create', {
+            form: 'getForm',
+            creating: 'getLoading',
+            created: 'getLoaded',
+            createError: 'getError'
+        }),
     },
     methods: {
         ...mapActions('customer', {
             getList: 'getList'
-        })
+        }),
+
+        ...mapActions('report/create', {
+            createReport: 'createReport'
+        }),
+
+        submitForm() {
+            this.createReport({
+                customerId: this.customerId,
+                fromDate: this.fromDate,
+                toDate: this.toDate
+            })
+        }
     },
     mounted() {
         this.getList();
@@ -44,16 +62,22 @@ export default class ReportCreateView extends Vue {
 
                 <div class="card-body">
                     <div class="m-auto d-flex justify-content-center align-content-center" v-if="loading">
-                        <LoadingSpinner />
+                        <LoadingSpinner/>
                     </div>
 
-                    <form v-if="loaded && !error">
+                    <div class="m-auto" v-if="created && !createError">
+                        <MessageDisplay
+                                :msg="`Report created for ${list.find(e => e.id = form.customerId).name} on ${fromDate} - ${toDate}`"
+                                type="success"/>
+                    </div>
+
+                    <form @submit.prevent="submitForm" v-if="loaded && !error">
                         <div class="form-group mb-2">
                             <label class="form-label" for="customer">
                                 Select customer
                             </label>
 
-                            <select id="customer" class="form-control form-select">
+                            <select id="customer" class="form-control form-select" v-model="customerId" required>
                                 <option v-for="customer in list" :key="customer.id" :value="customer.id">
                                     {{ customer.name }}
                                 </option>
@@ -65,7 +89,7 @@ export default class ReportCreateView extends Vue {
                                 Pick from date
                             </label>
 
-                            <VueDatePicker id="fromDate" v-model="fromDate" :enable-time-picker="false"/>
+                            <VueDatePicker id="fromDate" v-model="fromDate" model-type="format" :enable-time-picker="false" required/>
                         </div>
 
                         <div class="form-group">
@@ -73,7 +97,7 @@ export default class ReportCreateView extends Vue {
                                 Pick to date
                             </label>
 
-                            <VueDatePicker id="toDate" v-model="toDate" :enable-time-picker="false"/>
+                            <VueDatePicker id="toDate" v-model="toDate" model-type="format" :enable-time-picker="false" required/>
                         </div>
 
                         <div class="mt-3 d-flex justify-content-between align-items-center align-content-center">
@@ -83,16 +107,26 @@ export default class ReportCreateView extends Vue {
                                 Cancel
                             </router-link>
 
-                            <button class="btn btn-success">
-                                <i class="bi bi-check-lg"></i>
+                            <button :disabled="creating"
+                                    :class="creating ? 'btn btn-outline-success' : 'btn btn-success'" type="submit">
+                                <span v-if="!creating">
+                                    <i class="bi bi-check-lg"></i>
 
-                                Submit
+                                    Submit
+                                </span>
+
+                                <span class="d-flex justify-content-between align-content-center align-items-center"
+                                      v-if="creating">
+                                    Creating...
+
+                                    <span class="spinner-border spinner-border-sm text-success"></span>
+                                </span>
                             </button>
                         </div>
                     </form>
 
                     <div class="m-auto" v-if="error">
-                        <ErrorDisplay :msg="error" />
+                        <MessageDisplay :msg="error" type="danger"/>
                     </div>
                 </div>
             </div>
