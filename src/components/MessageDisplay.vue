@@ -3,16 +3,18 @@ import {Options, Vue} from 'vue-class-component';
 
 @Options({
     props: {
+        type: String,
         msg: String
     }
 })
-export default class ErrorDisplay extends Vue {
+export default class MessageDisplay extends Vue {
+    type!: string;
     msg!: string;
 }
 </script>
 
 <template>
-    <div class="alert alert-danger" role="alert">
+    <div :class="`alert alert-${type}`" role="alert">
         {{ msg }}
     </div>
 </template>

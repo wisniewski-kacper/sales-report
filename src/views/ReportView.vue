@@ -1,11 +1,10 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
 import {mapActions, mapGetters} from 'vuex';
-import {LoadingSpinner, ReportProductListItem} from '@/components';
-import ErrorDisplay from "@/components/ErrorDisplay.vue";
+import {LoadingSpinner, ReportProductListItem, MessageDisplay} from '@/components';
 
 @Options({
-    components: {ErrorDisplay, LoadingSpinner, ReportProductListItem},
+    components: {MessageDisplay, LoadingSpinner, ReportProductListItem},
     computed: {
         ...mapGetters('report/details', {
             products: 'getReportProducts',
@@ -103,7 +102,7 @@ export default class ReportView extends Vue {
                     </div>
 
                     <div class="m-auto" v-if="error">
-                        <ErrorDisplay :msg="error"/>
+                        <MessageDisplay :msg="error" type="danger"/>
                     </div>
                 </div>
             </div>

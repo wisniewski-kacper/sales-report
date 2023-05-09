@@ -1,1 +1,1 @@
-export {reportDetailsGetters} from './report-details.getter';
+export {reportDetailsGetter} from './report-details.getter';

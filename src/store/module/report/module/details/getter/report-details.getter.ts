@@ -1,6 +1,6 @@
 import {ReportDetailsStateModel} from '../model';
 
-export const reportDetailsGetters = {
+export const reportDetailsGetter = {
     getReport: (state: ReportDetailsStateModel) => {
         return state.report;
     },
@@ -18,6 +18,6 @@ export const reportDetailsGetters = {
     },
 
     getReportProducts: (state: ReportDetailsStateModel) => {
-        return reportDetailsGetters.getReport(state) !== null ? reportDetailsGetters.getReport(state)?.products : [];
+        return reportDetailsGetter.getReport(state) !== null ? reportDetailsGetter.getReport(state)?.products : [];
     }
 }

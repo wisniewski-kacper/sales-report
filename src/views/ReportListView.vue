@@ -1,10 +1,10 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
-import {LoadingSpinner, ReportListItem, ErrorDisplay} from '@/components';
+import {LoadingSpinner, ReportListItem, MessageDisplay} from '@/components';
 import {mapActions, mapGetters} from 'vuex';
 
 @Options({
-    components: {ErrorDisplay, LoadingSpinner, ReportListItem},
+    components: {MessageDisplay, LoadingSpinner, ReportListItem},
     computed: {
         ...mapGetters('report/list', {
             list: 'getList',
@@ -34,11 +34,11 @@ export default class ReportListView extends Vue {
                     <div class="d-flex align-items-center justify-content-between align-content-between">
                         <h2 class="card-title">Report List</h2>
 
-                        <button class="btn btn-outline-primary">
-                            <i class="bi bi-plus"></i>
+                        <router-link class="btn btn-outline-primary" to="/create">
+                         <i class="bi bi-plus"></i>
 
                             New
-                        </button>
+                        </router-link>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@ export default class ReportListView extends Vue {
                     </div>
 
                     <div class="m-auto" v-if="error">
-                        <ErrorDisplay :msg="error" />
+                        <MessageDisplay :msg="error" type="danger" />
                     </div>
                 </div>
             </div>
