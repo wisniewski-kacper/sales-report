@@ -4,3 +4,4 @@ export {ReportListItemModel} from './report-list-item.model';
 export {CustomerModel} from './customer.model';
 export {ReportFormModel} from './report-form.model';
 export {ProductListItemModel} from './product-list-item.model';
+export {ProductFormModel} from './product-form.model';

@@ -1,8 +1,9 @@
-import {productListModule} from './module';
+import {productCreateModule, productListModule} from './module';
 
 export const productModule = {
     namespaced: true,
     modules: {
-        list: productListModule
+        list: productListModule,
+        create: productCreateModule
     }
 }

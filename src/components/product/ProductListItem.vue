@@ -2,6 +2,11 @@
 import {Options, Vue} from 'vue-class-component';
 
 @Options({
+    data() {
+        return {
+            formatter: new Intl.NumberFormat('pl-PL', {style: 'currency', currency: 'PLN'}),
+        }
+    },
     props: {
         productId: Number,
         productName: String,
@@ -18,11 +23,11 @@ export default class ProductListItem extends Vue {
 </script>
 
 <template>
-    <td>{{productId}}</td>
+    <td>{{ productId }}</td>
 
     <td>{{ productName }}</td>
 
-    <td>{{ new Intl.NumberFormat('en-US', {style: 'currency', currency: currencyCode}).format(productPrice) }}</td>
+    <td>{{ formatter.format(productPrice) }}</td>
 </template>
 
 <style scoped lang="scss">

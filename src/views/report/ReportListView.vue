@@ -35,7 +35,7 @@ export default class ReportListView extends Vue {
                         <h2 class="card-title">Report List</h2>
 
                         <router-link class="btn btn-outline-primary" to="/report/create">
-                         <i class="bi bi-plus"></i>
+                            <i class="bi bi-plus"></i>
 
                             New
                         </router-link>

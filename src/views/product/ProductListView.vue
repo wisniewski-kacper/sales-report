@@ -34,11 +34,11 @@ export default class ProductListView extends Vue {
                     <div class="d-flex align-items-center justify-content-between align-content-between">
                         <h2 class="card-title">Product List</h2>
 
-                        <button class="btn btn-outline-primary">
+                        <router-link class="btn btn-outline-primary" to="/product/create">
                             <i class="bi bi-plus"></i>
 
                             New
-                        </button>
+                        </router-link>
                     </div>
                 </div>
 
