@@ -1,12 +1,12 @@
 <script lang="ts">
 import {Options, Vue} from 'vue-class-component';
-import {LoadingSpinner, ReportListItem, MessageDisplay} from '@/components';
+import {LoadingSpinner, MessageDisplay, ProductListItem} from '@/components';
 import {mapActions, mapGetters} from 'vuex';
 
 @Options({
-    components: {MessageDisplay, LoadingSpinner, ReportListItem},
+    components: {ProductListItem, MessageDisplay, LoadingSpinner},
     computed: {
-        ...mapGetters('report/list', {
+        ...mapGetters('product/list', {
             list: 'getList',
             error: 'getError',
             loading: 'getLoading',
@@ -14,7 +14,7 @@ import {mapActions, mapGetters} from 'vuex';
         })
     },
     methods: {
-        ...mapActions('report/list', {
+        ...mapActions('product/list', {
             getList: 'getList'
         })
     },
@@ -22,7 +22,7 @@ import {mapActions, mapGetters} from 'vuex';
         this.getList()
     }
 })
-export default class ReportListView extends Vue {
+export default class ProductListView extends Vue {
 }
 </script>
 
@@ -32,13 +32,13 @@ export default class ReportListView extends Vue {
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center justify-content-between align-content-between">
-                        <h2 class="card-title">Report List</h2>
+                        <h2 class="card-title">Product List</h2>
 
-                        <router-link class="btn btn-outline-primary" to="/report/create">
-                         <i class="bi bi-plus"></i>
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-plus"></i>
 
                             New
-                        </router-link>
+                        </button>
                     </div>
                 </div>
 
@@ -54,21 +54,21 @@ export default class ReportListView extends Vue {
                             <tr>
                                 <th>ID</th>
 
-                                <th>Customer</th>
+                                <th>Name</th>
 
-                                <th>Date range</th>
+                                <th>Price</th>
                             </tr>
 
                             </thead>
 
                             <tbody>
 
-                            <tr v-for="report in list" :key="report.id">
-                                <ReportListItem
-                                        :report-id="report.id"
-                                        :report-customer="report.customer"
-                                        :report-from-date="report.fromDate.toLocaleDateString()"
-                                        :report-to-date="report.toDate.toLocaleDateString()"/>
+                            <tr v-for="product in list" :key="product.id">
+                                <ProductListItem
+                                        :product-id="product.id"
+                                        :product-name="product.name"
+                                        :product-price="product.price"
+                                        :currency-code="product.currency"/>
                             </tr>
 
                             </tbody>

@@ -20,7 +20,7 @@ export default class ReportListItem extends Vue {
 <template>
     <td>{{ reportId }}</td>
 
-    <td>{{ reportCustomer }}</td>
+    <td><router-link class="link-primary text-decoration-none" to="/report/details">{{ reportCustomer }}</router-link></td>
 
     <td>{{ reportFromDate }} - {{ reportToDate }}</td>
 </template>

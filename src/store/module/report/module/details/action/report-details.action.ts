@@ -1,5 +1,5 @@
 import {ReportDetailsStateModel} from '../model';
-import {ApiMockUtils, ProductDataModel, ReportDataModel} from '@/common';
+import {ApiMockUtils, ReportProductDataModel, ReportDataModel} from '@/common';
 import {ActionContext} from 'vuex';
 
 export const reportDetailsAction = {
@@ -31,7 +31,7 @@ const report = (): ReportDataModel => {
     }
 }
 
-const product = (amount: number, price: number): ProductDataModel => {
+const product = (amount: number, price: number): ReportProductDataModel => {
     return {
         name: `Product #${Math.random()}`,
         amount,

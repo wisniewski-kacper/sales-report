@@ -1,8 +1,9 @@
 export {
     ReportDataModel,
-    ProductDataModel,
+    ReportProductDataModel,
     ReportListItemModel,
     CustomerModel,
-    ReportFormModel
+    ReportFormModel,
+    ProductListItemModel
 } from './model';
 export {ApiMockUtils} from './utils';

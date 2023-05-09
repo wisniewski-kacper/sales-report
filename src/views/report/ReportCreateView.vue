@@ -3,7 +3,6 @@ import {Options, Vue} from 'vue-class-component';
 import {mapActions, mapGetters} from 'vuex';
 import {LoadingSpinner, MessageDisplay} from '@/components';
 import VueDatePicker from '@vuepic/vue-datepicker';
-import {CustomerModel} from '@/common';
 
 @Options({
     components: {MessageDisplay, VueDatePicker, LoadingSpinner},
@@ -114,7 +113,7 @@ export default class ReportCreateView extends Vue {
                         </div>
 
                         <div class="mt-3 d-flex justify-content-between align-items-center align-content-center">
-                            <router-link class="btn btn-outline-secondary" to="/list">
+                            <router-link class="btn btn-outline-secondary" to="/report/list">
                                 <i class="bi bi-arrow-left"></i>
 
                                 Cancel
