@@ -2,9 +2,7 @@
 import {Options, Vue} from 'vue-class-component';
 
 @Options({})
-export default class LoadingSpinner extends Vue {
-
-}
+export default class LoadingSpinner extends Vue {}
 </script>
 
 <template>

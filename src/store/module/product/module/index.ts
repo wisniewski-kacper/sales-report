@@ -1,1 +1,2 @@
-export {productListModule} from './list'
+export {productListModule} from './list';
+export {productCreateModule} from './create';

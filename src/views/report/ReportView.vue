@@ -5,6 +5,11 @@ import {LoadingSpinner, ReportProductListItem, MessageDisplay} from '@/component
 
 @Options({
     components: {MessageDisplay, LoadingSpinner, ReportProductListItem},
+    data() {
+        return {
+            formatter: new Intl.NumberFormat('pl-PL', {style: 'currency', currency: 'PLN'}),
+        }
+    },
     computed: {
         ...mapGetters('report/details', {
             products: 'getReportProducts',
@@ -68,9 +73,9 @@ export default class ReportView extends Vue {
 
                             <tr v-for="product in products" :key="product.name">
                                 <ReportProductListItem :product-name="product.name"
-                                                :product-amount="product.amount"
-                                                :product-price="product.price"
-                                                :currency-code="report.currency"/>
+                                                       :product-amount="product.amount"
+                                                       :product-price="product.price"
+                                                       :currency-code="report.currency"/>
                             </tr>
 
                             </tbody>
@@ -93,7 +98,7 @@ export default class ReportView extends Vue {
                                 </th>
 
                                 <td colspan="2">
-                                    {{ new Intl.NumberFormat('en-US', {style: 'currency', currency: report.currency}).format(report.totalValue) }}
+                                    {{ formatter.format(report.totalValue) }}
                                 </td>
                             </tr>
 
