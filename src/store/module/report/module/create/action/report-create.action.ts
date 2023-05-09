@@ -13,5 +13,9 @@ export const reportCreateAction = {
         } catch (e) {
             context.commit('setOnErrorReportCreate', 'Report cannot be created')
         }
+    },
+
+    clearStore(context: ActionContext<ReportCreateStateModel, never>) {
+        context.commit('setOnOpenReportCreate')
     }
 }

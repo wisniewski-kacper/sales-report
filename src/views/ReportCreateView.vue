@@ -3,6 +3,7 @@ import {Options, Vue} from 'vue-class-component';
 import {mapActions, mapGetters} from 'vuex';
 import {LoadingSpinner, MessageDisplay} from '@/components';
 import VueDatePicker from '@vuepic/vue-datepicker';
+import {CustomerModel} from '@/common';
 
 @Options({
     components: {MessageDisplay, VueDatePicker, LoadingSpinner},
@@ -33,7 +34,8 @@ import VueDatePicker from '@vuepic/vue-datepicker';
         }),
 
         ...mapActions('report/create', {
-            createReport: 'createReport'
+            createReport: 'createReport',
+            clearStore: 'clearStore',
         }),
 
         submitForm() {
@@ -42,10 +44,21 @@ import VueDatePicker from '@vuepic/vue-datepicker';
                 fromDate: this.fromDate,
                 toDate: this.toDate
             })
-        }
+        },
+
+        dateRangeValidation() {
+            if (this.fromDate && this.toDate) {
+                if (this.fromDate > this.toDate) {
+                    alert('From date cannot be bigger than to date');
+                    return false;
+                }
+            }
+            return true;
+        },
     },
     mounted() {
         this.getList();
+        this.clearStore();
     }
 })
 export default class ReportCreateView extends Vue {
@@ -67,7 +80,7 @@ export default class ReportCreateView extends Vue {
 
                     <div class="m-auto" v-if="created && !createError">
                         <MessageDisplay
-                                :msg="`Report created for ${list.find(e => e.id = form.customerId).name} on ${fromDate} - ${toDate}`"
+                                :msg="`Report created for ${fromDate} - ${toDate}`"
                                 type="success"/>
                     </div>
 
@@ -97,7 +110,7 @@ export default class ReportCreateView extends Vue {
                                 Pick to date
                             </label>
 
-                            <VueDatePicker id="toDate" v-model="toDate" model-type="format" :enable-time-picker="false" required/>
+                            <VueDatePicker id="toDate" @change="dateRangeValidation" v-model="toDate" model-type="format" :enable-time-picker="false" required/>
                         </div>
 
                         <div class="mt-3 d-flex justify-content-between align-items-center align-content-center">
