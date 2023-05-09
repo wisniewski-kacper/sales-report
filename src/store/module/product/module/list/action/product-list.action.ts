@@ -1,7 +1,6 @@
 import {ProductListStateModel} from '@/store/module/product/module/list/model';
 import {ActionContext} from 'vuex';
 import {ApiMockUtils, ProductListItemModel} from '@/common';
-import {ProductListItem} from '@/components';
 
 export const productListAction = {
     async getList(context: ActionContext<ProductListStateModel, never>) {
