@@ -5,3 +5,4 @@ export {CustomerModel} from './customer.model';
 export {ReportFormModel} from './report-form.model';
 export {ProductListItemModel} from './product-list-item.model';
 export {ProductFormModel} from './product-form.model';
+export {ProductDataModel} from './product-data.model';

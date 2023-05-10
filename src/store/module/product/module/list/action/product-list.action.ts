@@ -37,7 +37,6 @@ const productListItem = (): ProductListItemModel => {
     return {
         id: id,
         name: `Product #${id}`,
-        price: Math.floor(Math.random()*10000) / 100,
-        currency: 'PLN'
+        price: Math.floor(Math.random()*10000) / 100
     }
 }

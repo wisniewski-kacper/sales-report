@@ -67,8 +67,7 @@ export default class ProductListView extends Vue {
                                 <ProductListItem
                                         :product-id="product.id"
                                         :product-name="product.name"
-                                        :product-price="product.price"
-                                        :currency-code="product.currency"/>
+                                        :product-price="product.price"/>
                             </tr>
 
                             </tbody>

@@ -5,5 +5,4 @@ export interface ReportDataModel {
     products: ReportProductDataModel[];
     totalAmount: number;
     totalValue: number;
-    currency: string
 }

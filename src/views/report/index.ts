@@ -1,5 +1,5 @@
 import ReportCreateView from './ReportCreateView.vue';
-import ReportView from './ReportView.vue';
+import ReportDetailsView from './ReportDetailsView.vue';
 import ReportListView from './ReportListView.vue';
 
-export {ReportListView, ReportCreateView, ReportView};
+export {ReportListView, ReportCreateView, ReportDetailsView};

@@ -25,10 +25,10 @@ import {LoadingSpinner, ReportProductListItem, MessageDisplay} from '@/component
         })
     },
     mounted() {
-        this.getReport()
+        this.getReport(this.$route.params.id)
     }
 })
-export default class ReportView extends Vue {
+export default class ReportDetailsView extends Vue {
 }
 </script>
 
@@ -74,8 +74,7 @@ export default class ReportView extends Vue {
                             <tr v-for="product in products" :key="product.name">
                                 <ReportProductListItem :product-name="product.name"
                                                        :product-amount="product.amount"
-                                                       :product-price="product.price"
-                                                       :currency-code="report.currency"/>
+                                                       :product-price="product.price"/>
                             </tr>
 
                             </tbody>
