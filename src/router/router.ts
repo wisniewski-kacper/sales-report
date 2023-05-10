@@ -5,7 +5,7 @@ import {
     ReportCreateView,
     ProductListView,
     ProductCreateView,
-    ProductEditView
+    ProductEditView, OrderCreateVue
 } from '@/views';
 
 const routes: Array<RouteRecordRaw> = [
@@ -66,6 +66,11 @@ const routes: Array<RouteRecordRaw> = [
             },
         ]
     },
+    {
+        path: '/order',
+        name: 'order',
+        component: OrderCreateVue
+    }
 ]
 
 const router = createRouter({
