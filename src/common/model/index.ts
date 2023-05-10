@@ -6,3 +6,6 @@ export {ReportFormModel} from './report-form.model';
 export {ProductListItemModel} from './product-list-item.model';
 export {ProductFormModel} from './product-form.model';
 export {ProductDataModel} from './product-data.model';
+export {OrderFormModel} from './order-form.model';
+export {OrderProductDataModel} from './order-product-data.model';
+export {OrderProductListItemModel} from './order-product-list-item.model'
