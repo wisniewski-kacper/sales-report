@@ -11,14 +11,12 @@ import {Options, Vue} from 'vue-class-component';
         productName: String,
         productPrice: Number,
         productAmount: Number,
-        currencyCode: String,
     }
 })
 export default class ReportProductListItem extends Vue {
     productName!: string
     productPrice!: string
     productAmount!: string
-    currencyCode!: string
 }
 </script>
 

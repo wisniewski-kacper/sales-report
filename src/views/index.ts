@@ -1,2 +1,2 @@
-export {ReportListView, ReportView, ReportCreateView} from './report';
-export {ProductListView, ProductCreateView} from './product';
+export {ReportListView, ReportDetailsView, ReportCreateView} from './report';
+export {ProductListView, ProductCreateView, ProductEditView} from './product';
