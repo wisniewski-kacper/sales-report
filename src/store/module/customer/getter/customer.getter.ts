@@ -1,19 +1,20 @@
 import {CustomerStateModel} from '../model';
+import {CustomerModel} from '@/common';
 
 export const customerGetter = {
-    getList: (state: CustomerStateModel) => {
+    getList: (state: CustomerStateModel): CustomerModel[] => {
         return state.list
     },
 
-    getLoading: (state: CustomerStateModel) => {
+    getLoading: (state: CustomerStateModel): boolean => {
         return state.loading
     },
 
-    getLoaded: (state: CustomerStateModel) => {
+    getLoaded: (state: CustomerStateModel): boolean => {
         return state.loaded
     },
 
-    getError: (state: CustomerStateModel) => {
+    getError: (state: CustomerStateModel): string | null => {
         return state.error
     }
 }
