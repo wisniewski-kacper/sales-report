@@ -2,7 +2,6 @@
 import {Options, Vue} from 'vue-class-component';
 import {mapActions, mapGetters} from 'vuex';
 import {LoadingSpinner, MessageDisplay} from '@/components';
-import {OrderProductDataModel} from '@/common';
 
 @Options({
     components: {LoadingSpinner, MessageDisplay},
