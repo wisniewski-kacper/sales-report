@@ -60,7 +60,7 @@ export default class ReportDetailsView extends Vue {
             <div class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        <h2>Generate report</h2>
+                        <h2>Report</h2>
                     </div>
                 </div>
 
