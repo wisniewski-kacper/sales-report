@@ -2,6 +2,7 @@
 import {Options, Vue} from 'vue-class-component';
 import {mapActions, mapGetters} from 'vuex';
 import {LoadingSpinner, ReportProductListItem, MessageDisplay} from '@/components';
+import {ReportProductDataModel} from '@/common';
 
 @Options({
     components: {MessageDisplay, LoadingSpinner, ReportProductListItem},
@@ -17,12 +18,33 @@ import {LoadingSpinner, ReportProductListItem, MessageDisplay} from '@/component
             loading: 'getLoading',
             loaded: 'getLoaded',
             error: 'getError'
-        })
+        }),
     },
     methods: {
         ...mapActions('report/details', {
             getReport: 'getReport'
-        })
+        }),
+
+        chartOptions: (product: ReportProductDataModel[]) => {
+            return {
+                chart: {
+                    width: 420,
+                    type: 'pie',
+                },
+                labels: product.map((e: ReportProductDataModel) => e.name),
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+        }
     },
     mounted() {
         this.getReport(this.$route.params.id)
@@ -108,6 +130,39 @@ export default class ReportDetailsView extends Vue {
                     <div class="m-auto" v-if="error">
                         <MessageDisplay :msg="error" type="danger"/>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center my-3" v-if="loaded && !error">
+        <div class="col-12 col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Amount chart of ordered products
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <apexchart type="pie"
+                               :options="chartOptions(products)"
+                               :series="products.map(e => e.amount)"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Value chart of ordered products
+                    </h3>
+                </div>
+
+                <div class="card-body">
+                    <apexchart type="pie"
+                               :options="chartOptions(products)"
+                               :series="products.map(e => Math.floor(e.amount * e.price * 100) / 100)"/>
                 </div>
             </div>
         </div>

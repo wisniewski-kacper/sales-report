@@ -32,7 +32,7 @@ const report = (id: number): ReportDataModel => {
 
 const product = (amount: number, price: number): ReportProductDataModel => {
     return {
-        name: `Product #${Math.random()}`,
+        name: `Product #${Math.floor(Math.random() * 100) + 1}`,
         amount,
         price
     }
